@@ -3,7 +3,7 @@
 **Version**:1.0.0
 
 ## Overview
-Problem Domain- Create an app that displays the weather and a map of a selected city in the USA with an api.
+Create an app that displays the weather and a map of a selected city in the USA with an api.
 
 ## WRRC (Web Request Response Cycle)
 ![wrrc__1__720](https://user-images.githubusercontent.com/81731210/226739165-ce44b607-9e75-48c1-af49-0aeaff745362.png)
