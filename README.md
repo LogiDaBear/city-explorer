@@ -1,3 +1,39 @@
+# city-explorer
+**Author**: Logan Reese
+**Version**:1.0.0
+
+## Overview
+Problem Domain- Create an app that displays the weather and a map of a selected city in the USA with an api.
+
+## Getting Started
+ - Find a credible API that is free
+ - More TBD
+
+## Architecture
+ - JSON, JS, CSS, .ENV
+
+## Change Log
+
+3/20/23 Day 1, Github repositorie, trello board, initial commits, setting up API keys
+
+## Credit and Collaborations
+  - the GOAT: Audrey Patterson
+
+## Time Estimates
+Name of feature: ___initial setup____
+
+Estimate of time needed to complete: _3hr___
+
+Start time: _7pm est___
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
