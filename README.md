@@ -14,7 +14,10 @@ Problem Domain- Create an app that displays the weather and a map of a selected 
  - More TBD
 
 ## Architecture
- - JSON, JS, CSS, .ENV
+ - React
+ - React-Bootstrap
+ - Axios
+ - LocationIQ
 
 ## Change Log
 
@@ -22,6 +25,7 @@ Problem Domain- Create an app that displays the weather and a map of a selected 
 
 ## Credit and Collaborations
   - the GOAT: Audrey Patterson
+  - Emmanuel Gonzales and Chris Foster for WRRC model
 
 ## Time Estimates
 Name of feature: ___initial setup____
