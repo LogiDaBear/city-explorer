@@ -26,9 +26,9 @@ Estimate of time needed to complete: _3hr___
 
 Start time: _7pm est___
 
-Finish time: _____
+Finish time: 12am___
 
-Actual time needed to complete: _____
+Actual time needed to complete: _5+hrs___
 
 
 
