@@ -1,4 +1,5 @@
-.App {
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +36,17 @@
   to {
     transform: rotate(360deg);
   }
+} */
+img{
+  margin-left: auto;
+  margin-right:auto;
+  justify-content: center;
+  display: block;
+}
+#body{
+  background-image: url(./img/loficity.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+
 }

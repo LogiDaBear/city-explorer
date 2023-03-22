@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import Image from 'react-bootstrap/Image';
+import Weather from './Weather'
+
 
 
 class App extends React.Component {
@@ -9,94 +11,88 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: [],
+      city: '',
+      cityData: {},
+      error: false,
+      errorMessage: '',
     }
   }
-
-    // TODO: USE AXIOS TO MAKE CALL OUT TO API
-    let data = await axios.get('')
-
-// TODO: SET THAT DATA INTO STATE
-this.setState({
-  city: ''
-  cityData: {},
-  error: false,
-  errorMessage: '',
-
-
-}
 
   handleCityInput = (event) => {
     this.setState({
       city: event.target.value
 
-    }
-
+    });
+  };
   //** async/await */
   getCityData = async (event) => {
-        event.preventDefault();
+    event.preventDefault();
 
-        try {
-          // TODO: Use axios to get the data from LocationIQ - using city in state
-          let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
+    try {
+      // TODO: Use axios to get the data from LocationIQ - using city in state
+      let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
 
-          let cityDatafromAxios = await axios.get(url);
+      let cityDatafromAxios = await axios.get(url);
 
-          console.log(cityDatafromAxios.data[0]);
 
-          // Todo: Set state with the data that comes back from axios
-          this.setState({
-            cityData: cityDatafromAxios.data[0]
-            error: false
-          });
-        } catch (error) {
+      console.log(cityDatafromAxios.data[0]);
 
-          //TODO: Set state with the error boolean and the error message
-          this.setState({
-            error: true,
-            errorMessage: error.message
-          })
+      let weatherDatafromAxios = await axios.get(`http://localhost:3001/weather?lat=48.86&lon=2.35`);
+      console.log('data from server',weatherDatafromAxios);
 
-        }
+      // Todo: Set state with the data that comes back from axios
+      this.setState({
+        cityData: cityDatafromAxios.data[0],
+        weatherData: weatherDatafromAxios.data,
+        error: false
+      });
 
-        //**MAP PORTION FOR LAB IMG SRC POINTS TO THIS URL:
-        https://maps.locationiq.com/v3/staticmap?key=pk.83d28f2d25fd251ed72954451ef79273&center=<CITYS LAT>,<CITYS LON>&zoom=13 */
+    } catch (error) {
 
-        render(){
-          return (
-            <>
-              <h1>City Explorer</h1>
+      //TODO: Set state with the error boolean and the error message
+      this.setState({
+        error: true,
+        errorMessage: error.message
+      })
 
-              <form onSubmit{this.getCityData}>
-                <label> Enter in a City:
-                  <input type="text" onChange={this.handleCityInput} />
-                </label>
-                <Card style={{ width: '18rem' }}>
-                  <Card.Img variant="top" src="holder.js/100px180" />
-                  <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Text>
-                      Some quick example text to build on the card title and make up the
-                      bulk of the card's content.
-                    </Card.Text>
-                    <Button type="submit" variant="outline-warning">Explore!</Button>{' '}
+    }
+  }
 
-                  </Card.Body>
-                </Card>
+  //**MAP PORTION FOR LAB IMG SRC POINTS TO THIS URL:
+  // https://maps.locationiq.com/v3/staticmap?key=pk.83d28f2d25fd251ed72954451ef79273&center=<CITYS LAT>,<CITYS LON>&zoom=13 */
 
-              </form>
-              {/*TERNARY - WTF */}
-              {this.state.error ? <p>{this.state.errorMessage}</p>
-                : <p>{this.state.cityData.display_name}</p>}
+  render() {
+    console.log(this.state);
+    return (
+      <div id='body'>
+        <h1>City Explorer</h1>
 
-              <p>{this.state.cityData.lon}</p>
-              <p>{this.state.cityData.lat}</p>
+        <form onSubmit={this.getCityData}>
+          <label> Enter in a City:
+            <input type="text" onChange={this.handleCityInput} />
+          </label>
+          <Button type="submit" variant="outline-warning">Explore!</Button>{' '}
+        </form>
+
+    {this.state.weatherData && (
+      <Weather weatherData={this.state.weatherData}/>
+    )}
 
 
 
-            </>
-          )
-        }
-      }
+        {/*TERNARY - WTF */}
+        {this.state.error ? <p>{this.state.errorMessage}</p>
+          : <p>{this.state.cityData.display_name}</p>}
+        <Image class="img-fluid" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=13`} alt='City map for location selected' />
+        <p>{this.state.cityData.lon}</p>
+        <p>{this.state.cityData.lat}</p>
+
+
+
+      </div>
+    )
+  }
+}
 
 
 
