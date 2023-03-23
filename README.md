@@ -40,6 +40,18 @@ Actual time needed to complete: _5+hrs___
 
 
 
+Name of feature: _____weather and movies APIs_______
+
+Estimate of time needed to complete: _5hr___
+
+Start time: _4pm___
+
+Finish time: _9pm__
+
+Actual time needed to complete: __5pm___
+
+
+
 
 
 # Getting Started with Create React App
