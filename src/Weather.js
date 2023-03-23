@@ -6,12 +6,16 @@ export default class Weather extends Component {
     return (
       <div>
         <h3>Weather</h3>
-        {this.props.weatherData.map(day =>{
-          console.log(day);
-          <ul>
-            Object-Brain is fried. 1 am ...
-          </ul>
-        })}
+        <ul>
+          {this.props.weatherData.map((day, idx) => (
+            // console.log(day);
+            <li key={idx}>
+              <p>{`Date: ${day.date} `}</p>
+              <p>{`Description: ${day.description}`}</p>
+
+            </li>
+          ))}
+        </ul>
       </div>
     )
   }

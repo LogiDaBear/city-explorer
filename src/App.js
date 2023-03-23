@@ -3,6 +3,10 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import Weather from './Weather'
+import Movie from './Movie'
+import Container from 'react-bootstrap/Container';
+import './App.css';
+// import image from './img/loficity.gif';
 
 
 
@@ -15,6 +19,8 @@ class App extends React.Component {
       cityData: {},
       error: false,
       errorMessage: '',
+      weatherData: null,
+      showMap: false,
     }
   }
 
@@ -31,20 +37,24 @@ class App extends React.Component {
     try {
       // TODO: Use axios to get the data from LocationIQ - using city in state
       let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
+      // `${process.env.REACT_APP_SERVER}/weather?lat=${}&lon=${}&searchQuery=${this.state.city}}`;
 
       let cityDatafromAxios = await axios.get(url);
 
-
       console.log(cityDatafromAxios.data[0]);
 
-      let weatherDatafromAxios = await axios.get(`http://localhost:3001/weather?lat=48.86&lon=2.35`);
-      console.log('data from server',weatherDatafromAxios);
+      let weatherDatafromAxios = await axios.get(`http://localhost:3001/weather?lat=${cityDatafromAxios.data[0].lat}&lon=${cityDatafromAxios.data[0].lon}`);
+      console.log('data from server', weatherDatafromAxios);
+
+      let movieResultsfromAxios = await axios.get(`http://localhost:3001/movies?title=${this.state.city}`);
 
       // Todo: Set state with the data that comes back from axios
       this.setState({
         cityData: cityDatafromAxios.data[0],
         weatherData: weatherDatafromAxios.data,
-        error: false
+        error: false,
+        showMap: true,
+        movieData: movieResultsfromAxios.data,
       });
 
     } catch (error) {
@@ -52,6 +62,7 @@ class App extends React.Component {
       //TODO: Set state with the error boolean and the error message
       this.setState({
         error: true,
+        showMap: false,
         errorMessage: error.message
       })
 
@@ -64,7 +75,10 @@ class App extends React.Component {
   render() {
     console.log(this.state);
     return (
-      <div id='body'>
+      <Container>
+        {/* <div style={{backgroundImage:`url(${image})`,backgroundRepeat: "no-repeat",  backgroundSize: "100%",
+  backgroundPosition: "center"}}> */}
+        {/* <div id="container-body"> */}
         <h1>City Explorer</h1>
 
         <form onSubmit={this.getCityData}>
@@ -74,22 +88,27 @@ class App extends React.Component {
           <Button type="submit" variant="outline-warning">Explore!</Button>{' '}
         </form>
 
-    {this.state.weatherData && (
-      <Weather weatherData={this.state.weatherData}/>
-    )}
-
 
 
         {/*TERNARY - WTF */}
         {this.state.error ? <p>{this.state.errorMessage}</p>
           : <p>{this.state.cityData.display_name}</p>}
-        <Image class="img-fluid" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=13`} alt='City map for location selected' />
+        {this.state.showMap && <Image class="img-fluid" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=13`} alt='City map for location selected' />}
         <p>{this.state.cityData.lon}</p>
         <p>{this.state.cityData.lat}</p>
 
 
 
-      </div>
+        {this.state.weatherData && (
+          <Weather weatherData={this.state.weatherData} />
+        )}
+
+        {this.state.movieData && (
+          <Movie movieData={this.state.movieData} />
+        )}
+
+        {/* </div> */}
+      </Container>
     )
   }
 }
