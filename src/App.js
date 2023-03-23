@@ -55,6 +55,7 @@ class App extends React.Component {
         error: false,
         showMap: true,
         movieData: movieResultsfromAxios.data,
+        
       });
 
     } catch (error) {

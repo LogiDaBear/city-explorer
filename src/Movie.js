@@ -10,7 +10,7 @@ export default class Movie extends Component {
           {this.props.movieData.map((movie) =>(
             <li key={movie}>
               <p>{`Movies: ${movie.title}`}</p>
-              <p>{`Movies: ${movie.overview}`}</p>
+              <p>{`Overview: ${movie.overview}`}</p>
             </li>
           ))}
         </ul>
