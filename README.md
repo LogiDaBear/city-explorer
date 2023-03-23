@@ -21,7 +21,9 @@ Create an app that displays the weather and a map of a selected city in the USA 
 
 ## Change Log
 
-3/20/23 Day 1, Github repositorie, trello board, initial commits, setting up API keys
+3/20/23 Day 1. Github repositories, trello board, initial commits, setting up API keys
+3/21/23 Day 2. Creating main App.js pages and first API calls
+3/22/23 Day 3. Created Weather and Movie APIs and information to render on Explore! submission
 
 ## Credit and Collaborations
   - the GOAT: Audrey Patterson
