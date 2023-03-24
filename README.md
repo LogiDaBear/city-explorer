@@ -51,8 +51,17 @@ Start time: _4pm___
 Finish time: _9pm__
 
 Actual time needed to complete: __5pm___
+- - - - - - - - - - - - - - - - - - - - - - - - 
 
+Name of feature: ____refactoring______
 
+Estimate of time needed to complete: __2hr___
+
+Start time: _6pm____
+
+Finish time: _7pm____
+
+Actual time needed to complete: _1hr_
 
 
 
