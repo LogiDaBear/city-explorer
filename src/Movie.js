@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Movies from './Movies';
 
 export default class Movie extends Component {
   render() {
@@ -7,12 +8,10 @@ export default class Movie extends Component {
       <div>
         <h3>Movies</h3>
         <ul>
-          {this.props.movieData.map((movie) =>(
-            <li key={movie}>
-              <p>{`Movies: ${movie.title}`}</p>
-              <p>{`Overview: ${movie.overview}`}</p>
-            </li>
-          ))}
+          {this.props.movieData.map(movies => <Movies movies={movies} />)}
+            {/* <li key={movie}> */}
+             
+            {/* </li> */}
         </ul>
       </div>
     )

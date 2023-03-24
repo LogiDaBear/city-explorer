@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import WeatherDay from './WeatherDay.js';
 
 export default class Weather extends Component {
   render() {
@@ -7,15 +8,13 @@ export default class Weather extends Component {
       <div>
         <h3>Weather</h3>
         <ul>
-          {this.props.weatherData.map((day, idx) => (
-            // console.log(day);
-            <li key={idx}>
-              <p>{`Date: ${day.date} `}</p>
-              <p>{`Description: ${day.description}`}</p>
+          let weatherList = {this.props.weatherData.map((day, idx) => (
+            <WeatherDay key={idx} description={`Description: ${day.description}`} date={`Date: ${day.date} `}/>
+             
 
-            </li>
+            
           ))}
-        </ul>
+            </ul>
       </div>
     )
   }

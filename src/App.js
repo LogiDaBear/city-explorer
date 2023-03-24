@@ -6,7 +6,7 @@ import Weather from './Weather'
 import Movie from './Movie'
 import Container from 'react-bootstrap/Container';
 import './App.css';
-// import image from './img/loficity.gif';
+
 
 
 
@@ -37,7 +37,7 @@ class App extends React.Component {
     try {
       // TODO: Use axios to get the data from LocationIQ - using city in state
       let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
-      // `${process.env.REACT_APP_SERVER}/weather?lat=${}&lon=${}&searchQuery=${this.state.city}}`;
+     
 
       let cityDatafromAxios = await axios.get(url);
 
@@ -70,16 +70,11 @@ class App extends React.Component {
     }
   }
 
-  //**MAP PORTION FOR LAB IMG SRC POINTS TO THIS URL:
-  // https://maps.locationiq.com/v3/staticmap?key=pk.83d28f2d25fd251ed72954451ef79273&center=<CITYS LAT>,<CITYS LON>&zoom=13 */
-
   render() {
     console.log(this.state);
     return (
       <Container>
-        {/* <div style={{backgroundImage:`url(${image})`,backgroundRepeat: "no-repeat",  backgroundSize: "100%",
-  backgroundPosition: "center"}}> */}
-        {/* <div id="container-body"> */}
+
         <h1>City Explorer</h1>
 
         <form onSubmit={this.getCityData}>
@@ -89,16 +84,12 @@ class App extends React.Component {
           <Button type="submit" variant="outline-warning">Explore!</Button>{' '}
         </form>
 
-
-
         {/*TERNARY - WTF */}
         {this.state.error ? <p>{this.state.errorMessage}</p>
           : <p>{this.state.cityData.display_name}</p>}
         {this.state.showMap && <Image class="img-fluid" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=13`} alt='City map for location selected' />}
         <p>{this.state.cityData.lon}</p>
         <p>{this.state.cityData.lat}</p>
-
-
 
         {this.state.weatherData && (
           <Weather weatherData={this.state.weatherData} />
@@ -108,17 +99,10 @@ class App extends React.Component {
           <Movie movieData={this.state.movieData} />
         )}
 
-        {/* </div> */}
+    
       </Container>
     )
   }
 }
-
-
-
-
-
-
-
 
 export default App;
