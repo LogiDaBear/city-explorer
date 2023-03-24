@@ -6,9 +6,9 @@ export default class Weather extends Component {
     console.log(this.props);
     return (
       <div>
-        <h3>Weather</h3>
+        <h2>Weather</h2>
         <ul>
-          let weatherList = {this.props.weatherData.map((day, idx) => (
+            {this.props.weatherData.map((day, idx) => (
             <WeatherDay key={idx} description={`Description: ${day.description}`} date={`Date: ${day.date} `}/>
              
 

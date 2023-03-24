@@ -43,10 +43,10 @@ class App extends React.Component {
 
       console.log(cityDatafromAxios.data[0]);
 
-      let weatherDatafromAxios = await axios.get(`http://localhost:3001/weather?lat=${cityDatafromAxios.data[0].lat}&lon=${cityDatafromAxios.data[0].lon}`);
+      let weatherDatafromAxios = await axios.get(`${process.env.REACT_APP_SERVER}/weather?lat=${cityDatafromAxios.data[0].lat}&lon=${cityDatafromAxios.data[0].lon}`);
       console.log('data from server', weatherDatafromAxios);
 
-      let movieResultsfromAxios = await axios.get(`http://localhost:3001/movies?title=${this.state.city}`);
+      let movieResultsfromAxios = await axios.get(`${process.env.REACT_APP_SERVER}/movies?title=${this.state.city}`);
 
       // Todo: Set state with the data that comes back from axios
       this.setState({
