@@ -62,6 +62,16 @@ Start time: _6pm____
 Finish time: _7pm____
 
 Actual time needed to complete: _1hr_
+- - - - - - - - - - - - - - - - - - - - - - - - 
+Name of feature: ____Cache______
+
+Estimate of time needed to complete: __2hr__
+
+Start time: __5pm__
+
+Finish time: __6pm__
+
+Actual time needed to complete: __1hr__
 
 
 
